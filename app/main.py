@@ -8,16 +8,16 @@ app = FastAPI(
     version=settings.VERSION,
 )
 
-# Configuración CORS
+# CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.ALLOWED_HOSTS,  # Puedes ajustar esto según tus necesidades
+    allow_origins=settings.ALLOWED_HOSTS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Incluir las rutas de la API
+# Include API router
 app.include_router(api_router, prefix=settings.API_STR)
 
 @app.get("/health-check")

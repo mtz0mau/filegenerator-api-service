@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     API_STR: str = "/api"
     ALLOWED_HOSTS: List[AnyHttpUrl] = ["http://localhost", "http://localhost:8000"]
 
-    # Variables de entorno relacionadas con la base de datos
+    # ENVIRONMENT VARIABLES
     DATABASE_URL: str
 
     @validator("ALLOWED_HOSTS", pre=True)
