@@ -1,0 +1,10 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      # Primer puerto es el puerto en el cual voy a poder acceder desde mi compu y el segundo es el puerto en el cual va a estar escuchando el contenedor
+    ports:
+      - "8321:8321"
+    volumes:
+      - .:/app

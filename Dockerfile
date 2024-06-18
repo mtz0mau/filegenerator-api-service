@@ -10,6 +10,8 @@ RUN pip install --upgrade pip
 
 WORKDIR /app
 
+COPY .env.example .env
+
 COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt

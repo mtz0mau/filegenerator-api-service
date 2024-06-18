@@ -1,0 +1,29 @@
+FROM python:3.12.0-slim
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Actualizar pip
+RUN pip install --upgrade pip
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar archivos necesarios para instalar dependencias
+COPY requirements.txt requirements.txt
+
+# Instalar dependencias de Python
+RUN pip install -r requirements.txt
+
+# Copiar el código fuente
+COPY . .
+
+# Exponer el puerto para Uvicorn
+EXPOSE 8321
+
+# Comando para iniciar la aplicación con Uvicorn y recarga automática (hostreload)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8321", "--reload"]
