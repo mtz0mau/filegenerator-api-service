@@ -22,4 +22,5 @@ FileGenerator API Service es un microservicio diseñado para la gestión, optimi
 - Dependencias adicionales según los tipos de archivos soportados (p.ej., reportlab para PDF, openpyxl para Excel)
 
 #Copiar .env.example a un nuevo archivo .env
+
 # test branch dev

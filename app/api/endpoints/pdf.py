@@ -1,6 +1,9 @@
 from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import Response
 from app.adapters import entry_adapter
+from app.repositories.pdf import generate_pdf, generate_uuid_filename
+
+import hashlib
 
 router = APIRouter()
 
@@ -18,4 +21,12 @@ async def create_pdf(request: Request):
         raise HTTPException(status_code=422, detail="JSON data is empty")
 
     data = entry_adapter.data_merge(json_data)
-    return JSONResponse(content=data)
+    pdf_buffer = generate_pdf(data)
+    pdf_filename = generate_uuid_filename()
+    return Response(
+        content=pdf_buffer.read(),
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f"attachment; filename={pdf_filename}"
+        }
+    )
