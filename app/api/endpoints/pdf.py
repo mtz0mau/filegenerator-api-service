@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import JSONResponse
-from app.models.entry import Entry
+from app.adapters import entry_adapter
 
 router = APIRouter()
 
@@ -17,5 +17,5 @@ async def create_pdf(request: Request):
     if not json_data:
         raise HTTPException(status_code=422, detail="JSON data is empty")
 
-    entry = Entry(json_data)
-    return JSONResponse(content=entry.columns)
+    data = entry_adapter.data_merge(json_data)
+    return JSONResponse(content=data)
