@@ -6,7 +6,6 @@ def get_columns(json_data):
         columns.append(key)
   return columns
 
-# get_rows -> ["mau", "martinez"]
 def get_rows(json_data):
   rows = []
   for entry in json_data:
