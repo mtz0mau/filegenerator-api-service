@@ -3,8 +3,6 @@ from fastapi.responses import Response
 from app.adapters import entry_adapter
 from app.repositories.pdf import generate_pdf, generate_uuid_filename
 
-import hashlib
-
 router = APIRouter()
 
 # create endpoint - recieve a raw json from body
